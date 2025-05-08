@@ -3,6 +3,7 @@ package com.escola.escolaProj.controller;
 import com.escola.escolaProj.Entity.Aluno;
 import com.escola.escolaProj.dto.AlunoDTO;
 import com.escola.escolaProj.service.AlunoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("aluno")
+@RestController// Define que esta classe é um controlador REST.
+@RequestMapping("aluno")// Define o caminho base das requisições para a controller ("/aluno").
 public class AlunoController {
-    private AlunoService alunoService;
+    @Autowired // Injeta automaticamente a dependência do AlunoService.
+    private AlunoService alunoService; // Responsável pela lógica de negócio.
 
     @GetMapping
     public List<Aluno> getAll(@RequestParam(required = false) String cpf){
@@ -33,10 +35,10 @@ public class AlunoController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<AlunoDTO> create(@RequestBody AlunoDTO alunoDTO){
-        AlunoDTO aluno = alunoService.createAluno(alunoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(aluno);
+    @PostMapping // Mapeia requisições POST.
+    public ResponseEntity<AlunoDTO> create(@RequestBody AlunoDTO alunoDTO) {
+        AlunoDTO alunoDTOsave = alunoService.createAluno(alunoDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(alunoDTOsave);
     }
 
     @PutMapping("/{id}")

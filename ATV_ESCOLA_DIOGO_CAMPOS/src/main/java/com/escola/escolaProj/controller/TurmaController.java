@@ -37,9 +37,12 @@ public class TurmaController {
     }
 
     @PostMapping // Mapeia requisições POST.
-    public ResponseEntity<TurmaDTO> create(@RequestBody TurmaDTO turmaDTO){ // Cria uma nova turma a partir dos dados enviados no corpo da requisição.
-        TurmaDTO turmaDTOsave = turmaService.createTurma(turmaDTO); // Chama a service para salvar a nova turma.
-        return ResponseEntity.status(HttpStatus.CREATED).body(turmaDTOsave); // Retorna Created com a turma criada.
+    public ResponseEntity<TurmaDTO> create(@RequestBody TurmaDTO turmaDTO){ // Cria
+        // uma nova turma a partir dos dados enviados no corpo da requisição.
+        TurmaDTO turmaDTOsave = turmaService.createTurma(turmaDTO); // Chama a
+        // service para salvar a nova turma.
+        return ResponseEntity.status(HttpStatus.CREATED).body(turmaDTOsave); // Retorna
+        // Created com a turma criada.
     }
 
     @PutMapping("/{id}") // Mapeia requisições PUT com um ID na URL.

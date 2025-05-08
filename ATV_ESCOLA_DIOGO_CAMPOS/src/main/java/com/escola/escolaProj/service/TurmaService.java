@@ -40,9 +40,11 @@ public class TurmaService {
 
     //cria uma turma
     public TurmaDTO createTurma(TurmaDTO turmaDTO){
-        Turma turma = turmaDTO.toTurma();
-        turma = turmaRepository.save(turma);
-        return turmaDTO.fromTurma(turma);
+        Turma turma = turmaDTO.toTurma(); // Converte o DTO para uma entidade chamada
+        //turma
+        turma = turmaRepository.save(turma); // Salva a entidade convertida no banco
+        return turmaDTO.fromTurma(turma); // Converte a entidade persistida de volta
+        // para um DTO
     }
 
     //atualiza os dados da turma menos os alunos
@@ -107,11 +109,12 @@ public class TurmaService {
     }
 
     public  boolean delete(Long id){
-        if(turmaRepository.existsById(id)){
-            turmaRepository.deleteById(id);
-            return true;
+        if(turmaRepository.existsById(id)){ // Verifica se existe uma turma
+            // com o ID fornecido
+            turmaRepository.deleteById(id); // Se existir, deleta a turma do banco
+            return true; // exclusão bem-sucedida
         }else {
-            return false;
+            return false; // Retorna false caso o ID não exista
         }
     }
 
